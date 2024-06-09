@@ -64,7 +64,7 @@ public class MetricsConfigService {
         register("cf6fda09-6e9d-4477-b643-4839c4cc646f", "circuit2", "temp[°C]");
         register("b656e4da-6d0e-4204-b6db-67270eaa5e90", "circuit2", "mixer[%]", MIXER_FUNCTION);
         register("fc1c59db-33d8-41f4-afb9-0513d18e8095", "accumulation", "temp[°C]");
-        register("fc1c59db-33d8-41f4-afb9-0513d18e8095", "boiler", "temp[°C]");
+        register("83a34595-924a-421e-b9c1-44c2a49f97ad", "boiler", "temp[°C]");
         register("ca4dd370-2cd7-4a6b-b091-f9df74150265", "boiler", "temp_req[°C]");
         register("c8797976-59ee-45f3-856a-5aec3693736c", "accumulation", "temp_req[°C]");
         register("c2d20aa6-8dd4-4513-a3fa-a45ba942b3ee", "electricity", "hdo");
@@ -81,6 +81,9 @@ public class MetricsConfigService {
     }
 
     private void register(String datapointConfigId, String measurement, String filed, Function<Object, Object> valueFunction) {
+        if (this.items.containsKey(datapointConfigId)) {
+            throw new IllegalArgumentException("Configuration for datapointConfigId " + datapointConfigId + " already exists");
+        }
         this.items.put(datapointConfigId, new MetricsConfig(measurement, filed, valueFunction));
     }
 

@@ -1,0 +1,22 @@
+xcenter:
+  username: "${XCENTER_USERNAME}"
+  password: "${XCENTER_PASSWORD}"
+  apiId: "${XCENTER_API_ID}"
+  deviceId: "${XCENTER_DEVICE_ID}"
+  url: "https://portal.kermi.com/xcenterpro/api/"
+
+influxdb:
+  url: "${INFLUXDB_URL}"
+  organization: "${INFLUXDB_ORG}"
+  bucket: "${INFLUXDB_BUCKET}"
+  token: "${INFLUXDB_TOKEN}"
+
+# spring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    cz.martinberanek.xcenter: DEBUG

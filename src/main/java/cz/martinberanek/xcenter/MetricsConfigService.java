@@ -49,9 +49,10 @@ public class MetricsConfigService {
     private final Map<String, MetricsConfig> items = new HashMap<>();
 
     public MetricsConfigService() {
+        register("777c1a8e-ec1c-4a15-9bcc-4ec5b8e0e4f4", "outdoor", "temp[°C]");
+        register("c2d20aa6-8dd4-4513-a3fa-a45ba942b3ee", "electricity", "hdo");
         register("88696e86-50ce-4bb6-bb9d-8e6d4ae814f8", "primary_circuit", "temp_in[°C]");
         register("b7b3f408-c605-4209-b993-02e002503f10", "primary_circuit", "temp_out[°C]");
-        register("777c1a8e-ec1c-4a15-9bcc-4ec5b8e0e4f4", "outdoor", "temp[°C]");
         register("6a7c2b23-341f-49f1-b3cb-49b99d51f266", "primary_circuit", "flow[l/min]");
         register("7b290829-d996-4fa4-b15c-88d712a79ef7", "primary_circuit", "temp_evap[°C]");
         register("6ca1372b-894d-4f27-add3-257fff9905c1", "heatpump", "temp_in[°C]");
@@ -64,10 +65,10 @@ public class MetricsConfigService {
         register("cf6fda09-6e9d-4477-b643-4839c4cc646f", "circuit2", "temp[°C]");
         register("b656e4da-6d0e-4204-b6db-67270eaa5e90", "circuit2", "mixer[%]", MIXER_FUNCTION);
         register("fc1c59db-33d8-41f4-afb9-0513d18e8095", "accumulation", "temp[°C]");
+        register("c8797976-59ee-45f3-856a-5aec3693736c", "accumulation", "temp_req[°C]");
         register("83a34595-924a-421e-b9c1-44c2a49f97ad", "boiler", "temp[°C]");
         register("ca4dd370-2cd7-4a6b-b091-f9df74150265", "boiler", "temp_req[°C]");
-        register("c8797976-59ee-45f3-856a-5aec3693736c", "accumulation", "temp_req[°C]");
-        register("c2d20aa6-8dd4-4513-a3fa-a45ba942b3ee", "electricity", "hdo");
+        register("83049eb3-7f02-4032-98e4-7b39dfc9252d", "boiler", "temp_min[°C]");
         register("1e107669-d310-43f4-9840-22539ff1798d", "heating", "power_out[kWh]");
         register("dbf925c9-f24e-456c-ac49-f7702adeb9d1", "heating", "power_in[kWh]");
         register("bb3379db-ec1a-4b37-b423-f73f35df41a7", "heating", "time[min]");

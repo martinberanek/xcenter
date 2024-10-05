@@ -1,6 +1,5 @@
 package cz.martinberanek.xcenter.xcenter;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -25,9 +24,9 @@ public class XCenterClient {
         this.authenticationService = authenticationService;
         restClient = RestClient.builder()
                 .baseUrl(configuration.getUrl())
-                .defaultStatusHandler(HttpStatus.UNAUTHORIZED::isSameCodeAs, (req, res) -> {
+                .defaultStatusHandler((status) -> status.isError(), (req, res) -> {
                     authenticationService.wipe();
-                    throw new RestClientException(res.getStatusCode().toString());
+                    throw new RestClientException(res.getStatusCode().toString() + " " + res.getStatusText());
                 })
                 .build();
     }

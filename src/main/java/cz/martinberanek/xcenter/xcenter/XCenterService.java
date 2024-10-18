@@ -12,14 +12,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class XCenterClient {
+public class XCenterService {
 
     private final XCenterConfiguration configuration;
     private final XCenterAuthenticationService authenticationService;
 
     private final RestClient restClient;
 
-    public XCenterClient(XCenterAuthenticationService authenticationService, XCenterConfiguration configuration) {
+    public XCenterService(XCenterAuthenticationService authenticationService, XCenterConfiguration configuration) {
         this.configuration = configuration;
         this.authenticationService = authenticationService;
         restClient = RestClient.builder()
@@ -43,5 +43,29 @@ public class XCenterClient {
                 .getOrDefault("ResponseData", Collections.emptyList());
         return list.stream().collect(Collectors.toMap(m -> (String) m.get("DatapointConfigId"), m -> m.get("Value")));
     }
+
+    public boolean getSceneEnabled(String sceneId) {
+        List<Map> list = (List<Map>) restClient.get()
+                .uri("Scene/GetScenesOverview/{uid}", configuration.getApiId())
+                .header("Cookie", authenticationService.getCookies())
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .body(Map.class)
+                .getOrDefault("ResponseData", Collections.emptyList());
+        return list.stream().filter(i->sceneId.equals(i.get("SceneId"))).map(i->(Boolean) i.get("Enabled")).findFirst().orElse(false);
+    }
+
+    public void setSceneEnabled(String sceneId, boolean value) {
+        restClient.post()
+                .uri("Scene/UpdateSceneSettings/{uid}", configuration.getApiId())
+                .header("Cookie", authenticationService.getCookies())
+                .body(Map.of("Settings", List.of(Map.of("SceneId", sceneId, "Enabled", value))))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .body(Map.class);
+    }
+
+
 
 }

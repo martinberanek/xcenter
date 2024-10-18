@@ -2,7 +2,7 @@ package cz.martinberanek.xcenter;
 
 import com.influxdb.client.write.Point;
 import cz.martinberanek.xcenter.influxdb.InfluxDBService;
-import cz.martinberanek.xcenter.xcenter.XCenterClient;
+import cz.martinberanek.xcenter.xcenter.XCenterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MetricsJob {
 
-    private final XCenterClient xCenterService;
+    private final XCenterService xCenterService;
     private final InfluxDBService influxDBService;
     private final MetricsConfigService metricsConfigService;
 

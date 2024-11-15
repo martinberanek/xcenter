@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.10</version>
+        <version>3.3.5</version>
     </parent>
 
     <properties>
@@ -28,12 +28,12 @@
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
-            <version>1.47.0</version>
+            <version>1.48.0</version>
         </dependency>
         <dependency>
             <groupId>com.influxdb</groupId>
             <artifactId>influxdb-client-java</artifactId>
-            <version>6.6.0</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
